@@ -10,7 +10,7 @@ nombre_funcion(parametro)
 Se puede llamar a la función las veces que sea necesario.
 
 """
-
+"""
 # Ejemplo 1
 
 # Definir función
@@ -37,3 +37,70 @@ nombre = input("Ingresaa tu nombre: ")
 edad   = int(input("Ingresa tu edad: "))
 
 muestraNombre(nombre, edad)
+"""
+# Ejemplo 3
+
+def tabla(num):
+    print(f"Tabla de multiplicar del numero: {num}")
+
+    for count in range(11):
+        operacion = num * count
+        print(f"{num} x {count} = {operacion}")
+
+    print("\n")
+
+tabla(3)
+tabla(8)
+
+# Ejemplo 3.1
+
+for ntabla in range(1,11):
+    tabla(ntabla)
+
+
+# Ejemplo 4 : PARAMETROS OPCIONALES
+
+def getEmpleado(nombre, dni = None): #Asignando el valor por defecto al parametro.
+    print("Empleado")
+    print(f"Nombre: {nombre}")
+
+    if dni != None:
+        print(f"DNI: {dni}")
+
+getEmpleado("Jona", 456785)
+
+#Ejemplo 5: PARAMETROS OPCIONALESS Y RETURN
+
+def saludame(nombre):
+    saludo = f"Hola {nombre}."
+
+    return saludo
+
+print(saludame("jona"))
+
+# Ejemplo 6
+
+def calculadora(num1, num2, basicas=False):
+
+    suma  = num1 + num2
+    resta = num1 - num2
+    multi = num1 * num2
+    div   = num1 / num2
+
+    cadena = ""
+
+    if basicas != False:
+        cadena += "Suma: " + str(suma)
+        cadena += "\n"
+        cadena += "Resta: " + str(resta)
+    else:
+        cadena += "Multiplicación: " + str(multi)
+        cadena += "\n"
+        cadena += "División: " + str(div)
+
+    return cadena
+
+print(calculadora(5,5, True))
+
+
+
