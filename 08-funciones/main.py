@@ -103,4 +103,25 @@ def calculadora(num1, num2, basicas=False):
 print(calculadora(5,5, True))
 
 
+# Ejemplo 7 - FUNCIONES DENTRO DE OTRAS
+
+def getNombre(nombre):
+    texto = f"El nombre es: {nombre}"
+    return texto
+
+def getApellido(apellido):
+    texto = f"El apellido es: {apellido}"
+    return texto
+
+def devuelveTodo(nombre, apellido):
+    texto = getNombre(nombre) + "\n" + getApellido(apellido)
+    return texto
+
+print(devuelveTodo("Jona", "Alvarez"))
+
+# Ejemplo 8 - FUNCIONES LAMBDA
+
+dimeElAnio = lambda anio: f"El año es {anio}"
+
+print(dimeElAnio(2021))
 
