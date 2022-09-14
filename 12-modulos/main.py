@@ -35,3 +35,15 @@ print(fecha_personalizada)
 
 print(datetime.datetime.now().timestamp())
 
+# Modulo matematicas
+
+import math
+
+print("Raiz cuadrada de 10: ", math.sqrt(10))
+print("Numero pi: ", math.pi)
+print("Redondear: ", math.ceil(6.456163521651)) #Redondea para arriba, con .floor para abajo
+
+#Modulo random
+import random
+
+print("Numero aleatorio entre 15 y 67: ", random.randint(15,67))
