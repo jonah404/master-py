@@ -46,21 +46,24 @@ if num_list in lista:
 else:
     print(f"El número {num_list} no se encuentra en la lista :(")
 
-#5 BIS OTRA FORMA:
-
-busqueda = int(input("Ingresa el número: "))
-
-comprobar = isinstance(busqueda, int)
-while not comprobar or busqueda < 0:
+#5 BIS OTRA FORMA (incorporado manejo de errores):
+try:
     busqueda = int(input("Ingresa el número: "))
-else:
-    print(f"Ingresste el {busqueda}")
 
-print(f"Buscar en la lista el numero {busqueda}")
+    comprobar = isinstance(busqueda, int)
+    while not comprobar or busqueda < 0:
+        busqueda = int(input("Ingresa el número: "))
+    else:
+        print(f"Ingresste el {busqueda}")
 
-search = lista.index(busqueda)
+    print(f"Buscar en la lista el numero {busqueda}")
 
-print(f"El número buscado existe en la lista, es el indice: {search}")
+
+    search = lista.index(busqueda)
+
+    print(f"El número buscado existe en la lista, es el indice: {search}")
+except:
+    print("El número no está en la lista")
 
 
 
