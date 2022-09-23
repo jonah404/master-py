@@ -2,7 +2,7 @@
 # Definir una clase (molde para crear mas objetos de ese tipo)
 # (coche) con características similares)
 
-class Coche:
+class Coche: #La clase hace que se puedan crear multiples objetos con ls mismas características
 
     # Atributos o Propiedades
     # Características
@@ -40,7 +40,9 @@ class Coche:
 
 # Crear objeto / Instanciar la clase
 
-coche = Coche() # Objeto
+coche = Coche() # la variable es el Objeto
+
+print("Coche 1: ")
 
 coche.setColor("Amarillo")
 coche.setModelo("F250")
@@ -56,3 +58,20 @@ coche.acelerar()
 coche.frenar()
 
 print("Velocidad nueva: ", coche.velocidad)
+
+# Crear mas objetos
+
+coche2 = Coche()
+
+coche2.setColor("Verde")
+coche2.setModelo("Gallardo")
+
+print("Coche 2: ")
+
+print(coche2.getColor())
+print(coche2.marca, coche2.getModelo(), coche2.getColor())
+
+
+
+
+
