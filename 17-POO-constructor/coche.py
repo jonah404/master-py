@@ -7,6 +7,9 @@ class Coche:
     hp = 500
     plazas = 2
 
+    soy_publico = "soy un atributo publico" #Propiedad publica
+    __soy_privado = "Soy un atributo privado" # Con los dos guiones indicamos que la propiedad es privada.
+
 
     def __init__(self, color, marca, modelo, velocidad, hp, plazas):
         self.color = color
@@ -16,6 +19,10 @@ class Coche:
         self.hp = hp
         self.plazas = plazas
 
+    #Metodos, son acciones que hace el objeto (coche)(funciones)
+
+    def getPrivado(self):
+        return self.__soy_privado
 
     def setColor(self, color):
         self.color = color
