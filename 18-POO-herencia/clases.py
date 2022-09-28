@@ -23,16 +23,16 @@ class Persona:
     def getEdad(self):
         return self.edad
 
-    def setNombre(self):
+    def setNombre(self, nombre):
         self.nombre = nombre
 
-    def setApellido(self):
+    def setApellido(self, apellido):
         self.apellido = apellido
 
-    def setAltura(self):
+    def setAltura(self, altura):
         self.altura = altura
     
-    def setEdad(self):
+    def setEdad(self, edad):
         self.edad = edad
 
     def hablar(self):
@@ -44,13 +44,13 @@ class Persona:
     def dormir(self):
         return "Estoy durmiendo"
 
-class Informático(Persona): # Herdea de la clase persona
+class Informatico(Persona): # Herdea de la clase persona
     """
     lenguajes
     experiencia
     """
 
-    def __init__(self):
+    def __init__(self): #IMPORTANTE, El constructor no se ejecuta en las clases hijas que heredan, cada constructor es exclusivo de cada clase.
         self.lenguajes = "HTML, CSS, Python"
         self.experiencia = 5
 
@@ -67,6 +67,13 @@ class Informático(Persona): # Herdea de la clase persona
     def repararPC(self):
         return "Ordenador reparado"
 
+class tecnicoRedes(Informatico):
 
+    def __init__(self):
+        super().__init__() # super() Es para acceder a la clase padre y .__init__() para acceder al constructor
+        self.auditarRedes = "Experto"
+        self.experienciaRedes = 15
 
+    def auditoria(self):
+        return "Estoy auditando una red"
 
