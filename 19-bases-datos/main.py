@@ -12,7 +12,7 @@ database = mysql.connector.connect(
 #print(database)
 
 # Cursor que permite ejecutar las consultas
-cursor = database.cursor()
+cursor = database.cursor(buffered=True) # El buffered va cuando se ejecutan muchas consultas diferentes
 
 # Crear base de datos
 """
@@ -52,15 +52,26 @@ coches = [
 
 database.commit()
 
-cursor.execute("SELECT * FROM vehiculos WHERE precio <= 15000 AND marca = 'Jeep'")
+# Listar datos de la base de datos
+cursor.execute("SELECT * FROM vehiculos")
 
 result = cursor.fetchall() # fetchall() (saca todos los datos)
 
 print("Todos los vehículos:")
 for coche in result:
-    print(coche[1], coche[3])
+    print(coche[1], coche[2], coche[3])
 
 cursor.execute("SELECT * FROM vehiculos")
 coche = cursor.fetchone() # fetchone() (saca solo un valor)
 print(coche)
 
+# Borrar datos de la base de datos
+cursor.execute("DELETE FROM vehiculos WHERE marca = 'Honda'")
+database.commit()
+
+print(cursor.rowcount, "datos borrados!!") # Cuenta la cantidad de registros que se borran
+
+# Actualizar 
+cursor.execute("UPDATE vehiculos SET modelo = 'Ranger' WHERE marca = 'Ford'")
+database.commit()
+print(cursor.rowcount, "datos actualizados!!")
