@@ -1,14 +1,24 @@
+import usuarios.usuario as user
+
 class Acciones:
     def registro(self):
         print("\nOk, vamos a registrarte en el sistema...")
 
         nombre   = input("¿Cuál es tu nombre? ")
         apellido = input("¿Cuál es tu apellido? ")
-        mail     = input("Ingresa tu email: ")
+        email     = input("Ingresa tu email: ")
         passwd   = input("Ingresa una contraseña para acceder: ")
+
+        usuario = user.Usuario(nombre, apellido, email, passwd)
+        registro = usuario.registrar()
+
+        if registro[0]>=1:
+            print(f"Perfecto {registro[1].nombre} te has registrado en el email {registro[1].email}")
+        else:
+            print("No te has registrado correctamente")
     
     def login(self):
         print("\nPor favor identifícate en el sistema...")
 
-        mail   = input("Ingresa tu email: ")
+        email   = input("Ingresa tu email: ")
         passwd = input("Ingresa la contraseña: ")
