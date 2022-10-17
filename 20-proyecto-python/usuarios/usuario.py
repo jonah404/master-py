@@ -1,16 +1,10 @@
-import mysql.connector
 import datetime
 import hashlib # para hashear las passwords, encriptar
+import usuarios.conexion as conexion
 
-database = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    passwd="",
-    database="master_python",
-    port=3306
-)
-
-cursor = database.cursor(buffered=True)
+connect = conexion.conectar()
+database = connect[0]
+cursor = connect[1]
 
 class Usuario:
 
@@ -24,7 +18,6 @@ class Usuario:
         fecha = datetime.datetime.now()
 
         # Cifrar contraseña
-
         cifrado = hashlib.sha256()
         cifrado.update(self.passwd.encode('utf8'))
 
@@ -42,11 +35,19 @@ class Usuario:
 
         return result
 
-        
-        
-
-        return[cursor.rowcount, self]
-
     def identificar(self):
-        return self.nombre
+        sql = "SELECT * FROM usuarios WHERE email = %s AND password = %s" # Consulta para ver si existe el usuario
+
+        # Cifrar contraseña
+        cifrado = hashlib.sha256()
+        cifrado.update(self.passwd.encode('utf8'))
+
+        # Datos para la consulta
+        usuario = (self.email, cifrado.hexdigest())
+
+        cursor.execute(sql, usuario)
+        result = cursor.fetchone()
+
+        return result
+
 

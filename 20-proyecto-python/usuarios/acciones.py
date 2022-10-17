@@ -20,5 +20,22 @@ class Acciones:
     def login(self):
         print("\nPor favor identifícate en el sistema...")
 
-        email   = input("Ingresa tu email: ")
-        passwd = input("Ingresa la contraseña: ")
+        try:
+            email   = input("Ingresa tu email: ")
+            passwd = input("Ingresa la contraseña: ")
+
+            usuario = user.Usuario('','', email, passwd)
+            login = usuario.identificar()
+
+            if email == login[3]:
+                print(f"\nBienvenido {login[1]}, te has registrado en el sistema el {login[5]}.")
+                self.proximasAcciones(login)
+
+        except Exception as e:
+            #print(type(e))
+            #print(type(e).__name__)
+            print(f"Login incorrecto, intenta más tarde")
+    
+    def proximasAcciones(self, usuario):
+        return None
+
