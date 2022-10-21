@@ -56,7 +56,7 @@ class Acciones:
             hazEl.mostrar(usuario)
             self.proximasAcciones(usuario)
         elif accion == "eliminar":
-            print("vamos a eliminar")
+            hazEl.borrar(usuario)
             self.proximasAcciones(usuario)
         elif accion == "salir":
             print(f"Ok {usuario[1]}, hasta pronto.")
