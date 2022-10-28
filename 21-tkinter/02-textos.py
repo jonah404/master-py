@@ -26,7 +26,10 @@ texto.config(
 )
 texto.pack(anchor=CENTER)
 
-texto = Label(ventana, text="Master en Python")
+def pruebas(nombre, apellido, pais):
+    return f"Hola {nombre} {apellido}, veo que eres de {pais}."
+
+texto = Label(ventana, text=pruebas(nombre="Jonatan",apellido="Alv", pais="Argentina"))
 texto.config(
     height=4,
     bg="gray",
