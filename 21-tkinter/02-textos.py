@@ -40,7 +40,4 @@ texto.config(
 )
 texto.pack(anchor=CENTER)
 
-
-
-
 ventana.mainloop()
