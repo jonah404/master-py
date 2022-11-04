@@ -9,12 +9,13 @@ def sacarAlerta():
 
 Button(ventana, text="Mostrar Alerta!!!", command=sacarAlerta). pack()
 
-def salir():
+def salir(nombre):
     resultado = MessageBox.askquestion("Salir", "¿Continuar?") 
 
     if resultado != "yes":
+        MessageBox.showinfo("Adios!", f"gracias por usar el sistema {nombre}")
         ventana.destroy()
 
-Button(ventana, text="Salir", command=salir). pack()
+Button(ventana, text="Salir", command=lambda: salir("Jonatan")). pack()
 
 ventana.mainloop()
