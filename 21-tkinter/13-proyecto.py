@@ -7,7 +7,7 @@ Crear un programa que tenga:
 - (hecho) Opcion de salir 
 - (hecho) Diferentes pantallas
 - (hecho) Formulario de añadir productos
-- Guardar datos temporalmente
+- (hecho) Guardar datos temporalmente
 - Mostrar datos listados en la pantalla principal
 
 """
@@ -31,11 +31,24 @@ def home():
         pady=20
     )
     home_label.grid(row=0, column=0)
+
+    products_box.grid(row=1)
+
+    # Listar productos
+    for product in products:
+        if len(product) == 3:
+            product.append("added")
+            Label(products_box, text=product[0]).grid()
+            Label(products_box, text=product[1]).grid()
+            Label(products_box, text=product[2]).grid()
+            Label(products_box, text="-------------------").grid()
+
     # Ocultar otras pantallas
     add_label.grid_remove()
     info_label.grid_remove()
     data_label.grid_remove()
     add_frame.grid_remove()
+
 
     return True
 
@@ -81,6 +94,7 @@ def add():
 
     #Ocultar pantallas
     home_label.grid_remove()
+    products_box.grid_remove()
     info_label.grid_remove()
     data_label.grid_remove()
 
@@ -98,18 +112,34 @@ def info():
     data_label.grid(row=1, column=0)
 
     add_label.grid_remove()
+    products_box.grid_remove()
     home_label.grid_remove()
     add_frame.grid_remove()
 
     return True
 
+def add_product():
+    products.append([
+        name_data.get(),
+        price_data.get(),
+        add_description_entry.get("1.0", "end-1c")
+    ])
+    name_data.set("")
+    price_data.set("")
+    add_description_entry.delete("1.0", END)
+
+    home()
+
 # Variables importantes
+products = []
 name_data = StringVar()
 price_data =StringVar()
 
 
 # Definir campos de pantallas (Inicio)
 home_label = Label(ventana, text="Inicio")
+products_box = Frame(ventana, width=250)
+
 # Definir campos de pantallas (add)
 add_label = Label(ventana, text="Añadir")
 
@@ -127,7 +157,7 @@ add_description_entry = Text(add_frame)
 
 add_separator = Label(add_frame)
 
-boton = Button(add_frame, text="Guardar")
+boton = Button(add_frame, text="Guardar", command=add_product)
 
 # Definir campos de pantallas (info)
 info_label = Label(ventana, text="Información")
