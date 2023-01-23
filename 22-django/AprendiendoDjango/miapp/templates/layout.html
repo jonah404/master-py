@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            <!--Título de cada página-->
+
+        {% endblock %}
+        | Jonatan
+    </title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <!-- Cabecera de la página -->
+    <header>
+        <div id="logotipo">
+            <!--Logo Django-->
+            <img src="{% static 'images/logo.png' %}" />
+            <h1>Sitio web con Django</h1>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li>
+                <a href="{% url 'inicio' %}">Inicio</a> 
+            </li>
+            <li>
+                <a href="{% url 'articulos' %}">Artículos</a> 
+            </li>
+            <li>
+                <a href="{% url 'create' %}">Crear artículo</a> 
+            </li>
+            <li>
+                <a href="{% url 'create_full' %}">Crear artículo 2</a> 
+            </li>
+            <li>
+                <a href="{% url 'Hola_mundo' %}">Hola Mundo</a> 
+            </li>
+            <li>
+                <a href="{% url 'pagina' %}">Pagina de pruebas</a> 
+            </li>
+            <li>
+                <a href="{% url 'contacto' 'Jonah' 'Alvarez' %}">Contacto</a> 
+            </li>
+        </ul>
+    </nav>
+    <div class="barra">
+        <span class="esquina-izquierda"></span>
+        <span class="relleno-barra"></span>
+        <span class="esquina-derecha"></span>
+    </div>
+
+    <div id="content">
+
+        <div class="box">
+        {% block content %}
+                    <!--Código que viene de templates-->
+                <strong>Contenido del bloque original</strong>
+        {% endblock %}
+        </div> 
+    </div>
+    <footer>
+        Mater en Ptyhon &copy; Jonatan | {% now "d/m/Y" %}
+    </footer>
+</body>
+</html>

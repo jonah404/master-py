@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+{% load filters %}
+
+{% block title %} Pagina de pruebas {% endblock %}
+
+{% block content %}
+
+<h1 class="title">Página de mi web</h1>
+<p>{{"Creado por Jonatan." | cut:"ñ"}}</p>
+
+<p>
+    {{texto|default:"No hay ningun texto cargado"}}
+</p>
+
+<p>
+    {{lista|join:', '}} <!--first last-->
+</p>
+
+<p>
+    {{lista|random}} 
+</p>
+
+<p>
+    {{"texto pruebas"|length}}
+</p>
+
+<p>
+    {{"texto pruebas"|upper}} <!--lower-->
+</p>
+
+<p>
+    {{"<h1>texto</h1> <strong>texto pruebas</strong>"|striptags|wordcount}}
+</p>
+
+
+{{"Jonatan"|saludo|safe}}
+
+{% endblock %}
