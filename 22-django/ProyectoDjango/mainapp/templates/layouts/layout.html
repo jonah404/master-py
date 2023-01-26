@@ -28,9 +28,11 @@
             <li>
                 <a href="{% url 'index' %}">Inicio</a> 
             </li>
+            {% for page in pages%}
             <li>
-                <a href="{% url 'about' %}">Sobre nosotros</a> 
+                <a href="#">{{page.1}}</a> 
             </li>
+            {% endfor %}
         </ul>
     </nav>
     <div class="barra">
