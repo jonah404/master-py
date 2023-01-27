@@ -30,7 +30,7 @@
             </li>
             {% for page in pages%}
             <li>
-                <a href="#">{{page.1}}</a> 
+                <a href="{% url 'page' page.2 %}">{{page.1}}</a> 
             </li>
             {% endfor %}
         </ul>
