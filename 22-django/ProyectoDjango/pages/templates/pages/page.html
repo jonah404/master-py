@@ -8,6 +8,6 @@
     <span class="date">{{page.created_at}}</span>
     
     <p class="content">
-        {{page.content}}
+        {{page.content|safe}}
     </p>
 {%endblock%}
