@@ -28,6 +28,16 @@
             <li>
                 <a href="{% url 'index' %}">Inicio</a> 
             </li>
+            <li>
+                <a href="{% url 'list_articles' %}">Categorías</a> 
+                <ul>
+                    {% for category in categories%}
+                        <li>
+                            <a href="{% url 'index' %}">{{category.1}}</a> 
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
             {% for page in pages%}
             <li>
                 <a href="{% url 'page' page.2 %}">{{page.1}}</a> 
