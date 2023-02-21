@@ -5,6 +5,15 @@
 {%block content%}
     <h1>{{title}}</h1>
 
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-warning">
+                {{message}}
+            </div>
+        {% endfor %}
+
+    {% endif %}
+
     <form method="post" action="">
         
         {% csrf_token %}
