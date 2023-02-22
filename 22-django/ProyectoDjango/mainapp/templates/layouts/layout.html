@@ -44,6 +44,11 @@
                     <a href="{% url 'page' page.2 %}">{{page.1}}</a> 
                 </li>
                 {% endfor %}
+
+                <li>
+                    <a href="{% url 'logout' %}">Cerrar Sesión</a> 
+                </li>
+
             {% else %}
                 <li>
                     <a href="{% url 'register' %}">Registro</a> 
