@@ -7,8 +7,20 @@ def index(): #Vincular la ruta a un método (se puede poner un nombre diferente 
     return "Aprendiendo Flask"
 
 @app.route('/informacion')
-def informacion():
-    return "<h1>Página de información</h1>"
+@app.route('/informacion/<string:nombre>') # <nombre> es un parámetro, de ésta forma páso parámetros y puedo recibir los datos que viajan en el
+@app.route('/informacion/<string:nombre>/<string:apellido>')
+def informacion(nombre = "", apellido = ""):
+
+    texto = ""
+
+    if nombre != "" or apellido != "":
+        texto = f"<h3>Bienvenido, {nombre} {apellido}</h3>"
+        
+    return f"""
+            <h1>Página de información</h1>
+            <p>Esta es la página de información</p>
+            {texto}
+            """
 
 @app.route('/contacto')
 def contacto():
