@@ -1,10 +1,10 @@
-from flask import Flask
+from flask import Flask, redirect, url_for, render_template # redirect y url_for se usan para redireccionar, render_template se usa para
 
 app = Flask(__name__) #Crear la app de flask (Instanciando framework dde Flask)
 
 @app.route('/') #Crear la ruta
 def index(): #Vincular la ruta a un método (se puede poner un nombre diferente al de la ruta)
-    return "Aprendiendo Flask"
+    return render_template('index.html')
 
 @app.route('/informacion')
 @app.route('/informacion/<string:nombre>') # <nombre> es un parámetro, de ésta forma páso parámetros y puedo recibir los datos que viajan en el
@@ -14,16 +14,17 @@ def informacion(nombre = "", apellido = ""):
     texto = ""
 
     if nombre != "" or apellido != "":
-        texto = f"<h3>Bienvenido, {nombre} {apellido}</h3>"
+        texto = f"Bienvenido, {nombre} {apellido}"
         
-    return f"""
-            <h1>Página de información</h1>
-            <p>Esta es la página de información</p>
-            {texto}
-            """
+    return render_template('informacion.html', texto=texto) #Se puede pasar la variable para como parámetro para mostrarla en el html
 
 @app.route('/contacto')
-def contacto():
+@app.route('/contacto/<redireccion>')
+def contacto(redireccion=None):
+
+    if redireccion != None:
+        return redirect(url_for('lenguajes'))
+
     return "<h1>Página de contacto</h1>"
 
 @app.route('/lenguajes-de-programacion')
