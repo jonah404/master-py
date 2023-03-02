@@ -4,7 +4,11 @@ app = Flask(__name__) #Crear la app de flask (Instanciando framework dde Flask)
 
 @app.route('/') #Crear la ruta
 def index(): #Vincular la ruta a un método (se puede poner un nombre diferente al de la ruta)
-    return render_template('index.html')
+    return render_template('index.html', 
+                           dato1="Valor",
+                           dato2="Valor2",
+                           lista=["Uno", "Dos", "Tres"]
+                           )
 
 @app.route('/informacion')
 @app.route('/informacion/<string:nombre>') # <nombre> es un parámetro, de ésta forma páso parámetros y puedo recibir los datos que viajan en el
