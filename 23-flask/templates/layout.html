@@ -6,32 +6,49 @@
         <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
     </head>
     <body>
-        <h1>Aprendiendo Flask</h1>
-        <hr>
-            <ul>
-                <li>
-                    <a href="/">Inicio</a>
-                </li>
-                <li>
-                    <a href="{{url_for('informacion')}}">Informacion</a>
-                </li>
-                <li>
-                    <a href="{{url_for('contacto')}}">Contacto</a>
-                </li>
-                <li>
-                    <a href="{{url_for('lenguajes')}}">Lenguajes de programacion</a>
-                </li>
-            </ul>
-        <hr>
+        
+        <!-- Cabecera de la página -->
+    <header>
+        <div id="logotipo">
+            <!--Logo Django-->
+            <img src="{{url_for('static', filename='img/flask.png')}}" />
+            <h1>Proyecto con Django</h1>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li>
+                <a href="/">Inicio</a>
+            </li>
+            <li>
+                <a href="{{url_for('informacion')}}">Informacion</a>
+            </li>
+            <li>
+                <a href="{{url_for('contacto')}}">Contacto</a>
+            </li>
+            <li>
+                <a href="{{url_for('lenguajes')}}">Lenguajes de programacion</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="barra">
+        <span class="esquina-izquierda"></span>
+        <span class="relleno-barra"></span>
+        <span class="esquina-derecha"></span>
+    </div>
 
-        <section>
-            {%block content%}
+    <div id="content">
+    {{ids}}    
+        <div class="box">
+        {% block content %}
+                    <!--Código que viene de templates-->
+                <strong>Contenido del bloque original</strong>
+        {% endblock %}
+        </div> 
+    </div>
+    <footer>
+        Mater en Ptyhon &copy; Jonatan - {{now.year}}
+    </footer>
 
-            {%endblock%}
-        </section>
-        <hr>
-        <footer>
-            Master en Python
-        </footer>
     </body>
 </html>

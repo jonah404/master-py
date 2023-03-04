@@ -1,6 +1,17 @@
 from flask import Flask, redirect, url_for, render_template # redirect y url_for se usan para redireccionar, render_template se usa para
+from datetime import datetime
 
 app = Flask(__name__) #Crear la app de flask (Instanciando framework dde Flask)
+
+# Context processors (es un código que va a estar disponible para usar en todas las páginas)
+
+@app.context_processor 
+def date_now():
+    return{
+        'now': datetime.utcnow()
+    }
+
+# Endpoints (Rutas)
 
 @app.route('/') #Crear la ruta
 def index(): #Vincular la ruta a un método (se puede poner un nombre diferente al de la ruta)
