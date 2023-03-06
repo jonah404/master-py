@@ -15,10 +15,16 @@ def date_now():
 
 @app.route('/') #Crear la ruta
 def index(): #Vincular la ruta a un método (se puede poner un nombre diferente al de la ruta)
+    
+    edad = 101
+    personas = ['Jona', 'Paola', 'Paula']
+    
     return render_template('index.html', 
+                           edad=edad,
                            dato1="Valor",
                            dato2="Valor2",
-                           lista=["Uno", "Dos", "Tres"]
+                           lista=["Uno", "Dos", "Tres"],
+                           personas=personas
                            )
 
 @app.route('/informacion')
