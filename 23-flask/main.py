@@ -1,7 +1,16 @@
 from flask import Flask, redirect, url_for, render_template # redirect y url_for se usan para redireccionar, render_template se usa para
 from datetime import datetime
+from flask_mysqldb import MySQL
 
 app = Flask(__name__) #Crear la app de flask (Instanciando framework dde Flask)
+
+# Conexion DB
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'proyectoflask'
+
+mysql = MySQL(app)
 
 # Context processors (es un código que va a estar disponible para usar en todas las páginas)
 
@@ -51,6 +60,14 @@ def contacto(redireccion=None):
 @app.route('/lenguajes-de-programacion')
 def lenguajes():
     return render_template('lenguajes.html')
+
+@app.route('/insertar-coche')
+def insertar_coche():
+    cursor = mysql.connection.cursor()
+    cursor.execute(f"INSERT INTO vehiculos VALUES(NULL, 'Lambo', 'Gallardo', 100000, 'Los Angeles')")
+    cursor.connection.commit()
+
+    return redirect(url_for('index'))
 
 if __name__ == '__main__': #Esto es para identificar que este archivo es el fichero principal
     app.run(debug=True) #Esto es para ejecutar el servidor y que en cada modificación se recargue automáticamente
