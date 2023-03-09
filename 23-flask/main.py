@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, render_template # redirect y url_for se usan para redireccionar, render_template se usa para
+from flask import Flask, redirect, url_for, render_template, request # redirect y url_for se usan para redireccionar, render_template se usa para
 from datetime import datetime
 from flask_mysqldb import MySQL
 
@@ -61,13 +61,24 @@ def contacto(redireccion=None):
 def lenguajes():
     return render_template('lenguajes.html')
 
-@app.route('/insertar-coche')
-def insertar_coche():
-    cursor = mysql.connection.cursor()
-    cursor.execute(f"INSERT INTO vehiculos VALUES(NULL, 'Lambo', 'Gallardo', 100000, 'Los Angeles')")
-    cursor.connection.commit()
+@app.route('/crear-coche', methods=['GET', 'POST'])
+def crear_coche():
+    if request.method == 'POST':
 
-    return redirect(url_for('index'))
+        marca = request.form['marca']
+        modelo = request.form['modelo']
+        precio = request.form['precio']
+        ciudad = request.form['ciudad']
+    
+        cursor = mysql.connection.cursor()
+        cursor.execute(f"INSERT INTO vehiculos VALUES(NULL, %s, %s, %s, %s)", (marca, modelo, precio, ciudad))
+        cursor.connection.commit()
+        
+
+        return redirect(url_for('index'))
+    
+    return render_template('crear_coche.html')
+
 
 if __name__ == '__main__': #Esto es para identificar que este archivo es el fichero principal
     app.run(debug=True) #Esto es para ejecutar el servidor y que en cada modificación se recargue automáticamente
