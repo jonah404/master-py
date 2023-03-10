@@ -1,8 +1,10 @@
-from flask import Flask, redirect, url_for, render_template, request # redirect y url_for se usan para redireccionar, render_template se usa para
+from flask import Flask, flash, redirect, url_for, render_template, request # redirect y url_for se usan para redireccionar, render_template se usa para
 from datetime import datetime
 from flask_mysqldb import MySQL
 
 app = Flask(__name__) #Crear la app de flask (Instanciando framework dde Flask)
+
+app.secret_key = 'clave_secreta_flask'
 
 # Conexion DB
 app.config['MYSQL_HOST'] = 'localhost'
@@ -73,11 +75,22 @@ def crear_coche():
         cursor = mysql.connection.cursor()
         cursor.execute(f"INSERT INTO vehiculos VALUES(NULL, %s, %s, %s, %s)", (marca, modelo, precio, ciudad))
         cursor.connection.commit()
+
+        flash('Has creado el coche correctamente!')
         
 
         return redirect(url_for('index'))
     
     return render_template('crear_coche.html')
+
+@app.route('/coches')
+def coches():
+    cursor = mysql.connection.cursor()
+    cursor.execute('SELECT * FROM vehiculos')
+    coches = cursor.fetchall()
+    cursor.close()
+
+    return render_template('coches.html', coches=coches)
 
 
 if __name__ == '__main__': #Esto es para identificar que este archivo es el fichero principal

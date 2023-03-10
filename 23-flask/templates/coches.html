@@ -1,0 +1,40 @@
+{%extends 'layout.html' %} <!--De este forma heredo los bloques definidos en el layout-->
+
+{%block title%}
+    Contacto
+{%endblock%}
+
+{%block content%}
+
+    <h1>Coches</h1>
+
+    {% for coche in coches %}
+            <article class="article-item">
+
+             
+                <div class="data">
+                    <h2>
+                        <a href=""> 
+                            {{coche.1}}
+                        </a>
+                    </h2>
+                    <span class="date">
+                        {{coche.2}}
+                        |
+                        {{coche.3}}
+                    </span>
+                    <p>
+                        {{coche.4}} 
+                    </p>
+                        <a href="" class="btn btn-warning">Editar</a>
+                        <a href="" class="btn">Eliminar</a>
+                    <p>
+
+                    </p>
+                </div>
+
+                <div class="clearfix"></div>
+            </article>
+        {% endfor %}
+
+{%endblock%}
