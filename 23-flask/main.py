@@ -92,6 +92,25 @@ def coches():
 
     return render_template('coches.html', coches=coches)
 
+@app.route('/coche/<coche_id>')
+def coche(coche_id):
+    cursor = mysql.connection.cursor()
+    cursor.execute('SELECT * FROM vehiculos WHERE id = %s', (coche_id))
+    coche = cursor.fetchall()
+    cursor.close()
+
+    return render_template('coche.html', coche=coche[0])
+
+@app.route('/borrar-coche/<coche_id>')
+def borrar_coche(coche_id):
+    cursor = mysql.connection.cursor()
+    cursor.execute(f'DELETE FROM vehiculos WHERE id = {coche_id}')
+    mysql.connection.commit()
+
+    flash('El vehículo ha sido eliminado!')
+
+    return redirect(url_for('coches'))
+
 
 if __name__ == '__main__': #Esto es para identificar que este archivo es el fichero principal
     app.run(debug=True) #Esto es para ejecutar el servidor y que en cada modificación se recargue automáticamente
