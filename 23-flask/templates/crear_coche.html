@@ -6,22 +6,25 @@
 
 {%block content%}
 
-    <h1>Crear Coche</h1>
+    {% if coche %}
+        <h1>Editar Coche: {{coche.1}} {{coche.2}}</h1>
+    {% else %}
+        <h1>Crear Coche</h1>
+    {% endif %}
+        <form action="" method="POST">
+            <label for="marca">Marca</label>
+            <input type="text" name="marca" {% if coche %} value="{{coche.1}}" {% endif %}/>
 
-    <form action="" method="POST">
-        <label for="marca">Marca</label>
-        <input type="text" name="marca"/>
+            <label for="modelo">Modelo</label>
+            <input type="text" name="modelo" {% if coche %} value="{{coche.2}}" {% endif %}/>
 
-        <label for="modelo">Modelo</label>
-        <input type="text" name="modelo"/>
+            <label for="precio">Precio</label>
+            <input type="number" name="precio" {% if coche %} value="{{coche.3}}" {% endif %}/>
 
-        <label for="precio">Precio</label>
-        <input type="number" name="precio"/>
+            <label for="ciudad">Ciudad</label>
+            <input type="text" name="ciudad" {% if coche %} value="{{coche.4}}" {% endif %}/>
 
-        <label for="ciudad">Ciudad</label>
-        <input type="text" name="ciudad"/>
-
-        <input type="submit" value="Guardar"/>
-    </form>
-    
+            <input type="submit" value="Guardar"/>
+        </form>
+        
 {%endblock%}
